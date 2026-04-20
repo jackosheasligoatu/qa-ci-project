@@ -5,7 +5,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY pages ./pages
+COPY tests ./tests
+COPY utils ./utils
 
-CMD ["python", "test_login.py"]
-
+CMD ["pytest", "-v", "tests/"]

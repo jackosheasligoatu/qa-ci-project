@@ -2,6 +2,8 @@ name: CI Pipeline
 
 env:
   APP_ENV: "ci"
+  APP_USERNAME: ${{ secrets.APP_USERNAME }}
+  APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
 
 on:
   push:

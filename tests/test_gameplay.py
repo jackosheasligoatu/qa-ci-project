@@ -1,8 +1,12 @@
 from playwright.sync_api import sync_playwright
 import time
 
-USERNAME = "testsignupsep1"
-PASSWORD = "Omega123"
+import os
+
+print("ENV:", os.getenv("APP_ENV"))
+
+USERNAME = os.getenv("APP_USERNAME")
+PASSWORD = os.getenv("APP_PASSWORD")
 SPINS = 20
 SPIN_DELAY = 2
 

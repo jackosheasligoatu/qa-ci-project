@@ -33,3 +33,12 @@ jobs:
 
       - name: Run login script
         run: python tests/test_login.py
+
+      - name: Run depsoit script
+        run: python tests/test_deposit.py
+
+      - name: Run gameplay script
+        run: python tests/test_gameplayn.py 
+        
+      - name: Run withdrawal script
+        run: python tests/test_withdrawal.py

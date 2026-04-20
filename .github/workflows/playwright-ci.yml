@@ -32,4 +32,4 @@ jobs:
         run: python -m playwright install chromium
 
       - name: Run login script
-        run: python test_login.py
+        run: python tests/test_login.py

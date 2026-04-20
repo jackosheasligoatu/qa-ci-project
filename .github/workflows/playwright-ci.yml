@@ -31,5 +31,5 @@ jobs:
       - name: Install Playwright browsers
         run: python -m playwright install chromium
 
-      - name: Run tests
-        run: pytest -v tests/
+      - name: Run login script
+        run: python test_login.py

@@ -1,23 +1,16 @@
 from playwright.sync_api import sync_playwright
 import time
 
-import os
-
-print("ENV:", os.getenv("APP_ENV"))
-
-USERNAME = os.getenv("APP_USERNAME")
-PASSWORD = os.getenv("APP_PASSWORD")
-
 def run_deposit():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=False)
         context = browser.new_context()
         page = context.new_page()
 
         # Login
         page.goto("https://portal5.omegasys.eu/login")
-        page.fill('input[placeholder="Username or Email"]', USERNAME)
-        page.fill('input[placeholder="Password"]', PASSWORD)
+        page.fill('input[placeholder="Username or Email"]', 'jack-espanol')
+        page.fill('input[placeholder="Password"]', 'Omega123!')
         page.click('button:has-text("Submit")')
 
         page.wait_for_selector("text=This is a demo environment", timeout=10000)

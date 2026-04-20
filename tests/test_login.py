@@ -1,6 +1,8 @@
 from playwright.sync_api import sync_playwright
 import os
 
+print("ENV:", os.getenv("APP_ENV"))
+
 USERNAME = os.getenv("APP_USERNAME")
 PASSWORD = os.getenv("APP_PASSWORD")
 
@@ -14,12 +16,14 @@ def run():
         page.goto("https://portal5.omegasys.eu/login")
 
         # Step 2: Fill in credentials
-        page.fill('input[placeholder="Username or Email"]', 'APP_USERNAME')
-        page.fill('input[placeholder="Password"]', 'APP_PASSWORD')
-        page.click('button:has-text("Submit")')  # May need to update this if different
+        page.fill('input[placeholder="Username or Email"]', USERNAME)
+        page.fill('input[placeholder="Password"]', PASSWORD)
+        page.click('button:has-text("Submit")')
 
         # Step 3: Wait for a logged-in indicator
-        page.wait_for_selector("text=This is a demo environment")  # <-- Replace with real text you find
+        page.wait_for_selector("text=This is a demo environment")
+
+        assert page.is_visible("text=This is a demo environment")
 
         print("✅ Login successful!")
         browser.close()

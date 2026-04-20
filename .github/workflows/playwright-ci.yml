@@ -1,5 +1,8 @@
 name: CI Pipeline
 
+env:
+  APP_ENV: "ci"
+
 on:
   push:
     branches: [main]

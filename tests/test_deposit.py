@@ -16,8 +16,8 @@ def run_deposit():
 
         # Login
         page.goto("https://portal5.omegasys.eu/login")
-        page.fill('input[placeholder="Username or Email"]', APP_USERNAME)
-        page.fill('input[placeholder="Password"]', APP_PASSWORD)
+        page.fill('input[placeholder="Username or Email"]', USERNAME)
+        page.fill('input[placeholder="Password"]', PASSWORD)
         page.click('button:has-text("Submit")')
 
         page.wait_for_selector("text=This is a demo environment", timeout=10000)

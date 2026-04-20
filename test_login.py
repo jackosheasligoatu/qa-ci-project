@@ -1,4 +1,7 @@
 from playwright.sync_api import sync_playwright
+import os
+
+print("ENV:", os.getenv("APP_ENV"))
 
 def run():
     with sync_playwright() as p:
@@ -10,7 +13,7 @@ def run():
         page.goto("https://portal5.omegasys.eu/login")
 
         # Step 2: Fill in credentials
-        page.fill('input[placeholder="Username or Email"]', 'jack0-espanol0')
+        page.fill('input[placeholder="Username or Email"]', 'jack-espanol')
         page.fill('input[placeholder="Password"]', 'Omega123!')
         page.click('button:has-text("Submit")')  # May need to update this if different
 

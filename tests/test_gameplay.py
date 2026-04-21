@@ -7,7 +7,7 @@ print("ENV:", os.getenv("APP_ENV"))
 
 USERNAME = os.getenv("APP_USERNAME")
 PASSWORD = os.getenv("APP_PASSWORD")
-SPINS = 20
+SPINS = 10
 SPIN_DELAY = 2
 
 def run():

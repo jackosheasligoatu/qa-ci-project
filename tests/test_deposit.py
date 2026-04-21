@@ -53,7 +53,7 @@ def run_deposit():
         bonus_selector = 'div:has-text("DEPOSIT 50 GET 50 💸 - OMEGA")'
         page.wait_for_selector(bonus_selector, timeout=10000)
         page.click(bonus_selector)
-        print("🎁 Selected Deposit Test - OMEGA bonus")
+        print("🎁 Selected Bonus Plan for Player")
         time.sleep(2)
 
         # Click Submit bonus button

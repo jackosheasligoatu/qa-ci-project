@@ -1,8 +1,8 @@
 import os
 
 BASE_URL = os.getenv("BASE_URL", "https://portal5.omegasys.eu/login")
-APP_USERNAME = os.getenv("APP_USERNAME")
-APP_PASSWORD = os.getenv("APP_PASSWORD")
+USERNAME = os.getenv("APP_USERNAME")
+PASSWORD = os.getenv("APP_PASSWORD")
 HEADLESS = os.getenv("HEADLESS", "true").lower() == "true"
 
 GAME_ID = os.getenv("GAME_ID", "aztec_fire")

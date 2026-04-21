@@ -1,10 +1,4 @@
-name: CI Pipeline
-
-env:
-  APP_ENV: "ci"
-  APP_USERNAME: ${{ secrets.APP_USERNAME }}
-  APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
-  HEADLESS: "true"
+name: Docker CI Pipeline
 
 on:
   push:
@@ -13,32 +7,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  docker-test:
     runs-on: ubuntu-latest
+
+    env:
+      APP_USERNAME: ${{ secrets.APP_USERNAME }}
+      APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+      APP_ENV: "ci"
+      HEADLESS: "true"
+      DEPOSIT_AMOUNT: "1000"
+      WITHDRAWAL_AMOUNT: "100"
+      SPINS: "10"
+      SPIN_DELAY: "1"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Build Docker image
+        run: docker build -t qa-ci-project .
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Install Playwright browsers
-        run: python -m playwright install chromium
-
-      - name: Run login script
-        run: python tests/test_login.py
-
-      - name: Run depsoit script
-        run: python tests/test_deposit.py
-
-      - name: Run gameplay script
-        run: python tests/test_gameplay.py 
-        
-      - name: Run withdrawal script
-        run: python tests/test_withdrawal.py
+      - name: Run tests in Docker container
+        run: |
+          docker run --rm \
+            -e APP_USERNAME="$APP_USERNAME" \
+            -e APP_PASSWORD="$APP_PASSWORD" \
+            -e APP_ENV="$APP_ENV" \
+            -e HEADLESS="$HEADLESS" \
+            -e DEPOSIT_AMOUNT="$DEPOSIT_AMOUNT" \
+            -e WITHDRAWAL_AMOUNT="$WITHDRAWAL_AMOUNT" \
+            -e SPINS="$SPINS" \
+            -e SPIN_DELAY="$SPIN_DELAY" \
+            qa-ci-project
